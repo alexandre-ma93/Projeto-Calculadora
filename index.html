@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Calculadora</title>
+    <style>
+        /* formatação em css dos elementos p, form, input type button e body*/
+        p {
+            color: rgb(19, 195, 189);
+            text-align: center;
+            font-size: 45px;
+            font-family: 'Courier New', Courier, monospace, bold;
+        }
+
+        form {
+            border: 2px solid black;
+            width: 50%;
+            text-align: center;
+            margin: auto;
+            padding: 10px;
+            background-color: rgb(20, 226, 220);
+            font-family: 'Courier New', Courier, monospace, bold;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            font-size: 15px;
+            border: 2px solid;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+
+        }
+
+        output {
+            font-size: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+        }
+
+        body {
+            background-color: rgba(19, 195, 189, 0.318);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- programa criado para ser uma calculadora -->
+    <p>Calculadora:</p>
+    <form action="" id="idCalculadora">
+        <label for="idNumeros">Coloque os numeros que você quer calcular:</label><br><br>
+
+        <!-- campo para colocar os numeros a serem calculados-->
+        <input type="number" id="idNum1" step="0.01">
+        <input type="number" id="idNum2" step="0.01"><br><br>
+
+        <label for="idOperacoes"> Selecione a opereção que você quer fazer:</label><br><br>
+
+        <!-- botões com operações para calcular os numeros, cada botão cria a mesma função de calcular-->
+        <input type="button" value="+" onClick="calcular(this)">
+        <input type="button" value="-" onClick="calcular(this)">
+        <input type="button" value="*" onClick="calcular(this)">
+        <input type="button" value="/" onClick="calcular(this)">
+
+        <!-- botão para limpar todos os campos-->
+        <input type="reset" value="Limpar"><br><br>
+
+        <!-- campo para mostrar resultado do calculo-->
+        <label for="idOutResultado">Resultado da operação:</label><br>
+        <output id="idOutResultado"></output><br><br><br>
+    </form>
+    <script>
+        // função calcular que pega o elemento do botão onclick
+        function calcular(e) {
+
+            // cria uma variavel com o valor do elemento (+, -, *, /)
+            var operacao = e.value
+
+            // cria as variveis dos numeros puxando o valor colocado nos campos numeros
+            var numero1 = parseFloat(Number(document.getElementById("idNum1").value))
+            var numero2 = parseFloat(Number(document.getElementById("idNum2").value))
+
+            // faz o calculo dos numeros com a operação selecionada
+            resultado = Number(eval(numero1 + operacao + numero2)).toFixed(2)
+
+            // manda o resultado para o campo html de resultado
+            document.getElementById("idOutResultado").value = resultado
+
+            // apaga os campos de numeros assim que apresentar o resultado
+            document.getElementById("idNum1").value = ""
+            document.getElementById("idNum2").value = ""
+        }
+    </script>
+</body>
+
+</html>
